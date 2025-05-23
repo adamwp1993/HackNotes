@@ -21,8 +21,12 @@
 
 ## HTTP/HTTPs - Web Application
 
-* [playbook](http-https-web-application/playbook.md)
-* [Page 1](http-https-web-application/page-1.md)
+* [WebApp Methodology](http-https-web-application/webapp-methodology.md)
+* [SQL Injection](http-https-web-application/sql-injection.md)
+* [Command Injection](http-https-web-application/command-injection.md)
+* [XSS](http-https-web-application/xss.md)
+* [File Upload](http-https-web-application/file-upload.md)
+* [HTTP Verb Tampering](http-https-web-application/http-verb-tampering.md)
 
 ## Windows & Active Directory
 
