@@ -2,7 +2,7 @@
 description: Checkbook for enumerating web applications
 ---
 
-# playbook
+# WebApp Methodology
 
 * [ ] Passive Recon
 * [ ] Active Recon
@@ -23,10 +23,12 @@ description: Checkbook for enumerating web applications
     * [ ] Can you bypass access control?
     * [ ] Can you identify all places in the application that take user input?
     * [ ] Can you identify all URL parameters?
-    * [ ] Can you idenfity all HTTP request parameters?
+    * [ ] Can you identify all HTTP request parameters?
   * [ ] Display user input on page - Possible XSS?
   * [ ] Request interacting with Database - SQL Injection?
   * [ ] Parameter is adjusting content on page from a file - LFI/RFI?
     * [ ] i.e lang=eng.php
   * [ ] User input is used to execute some utility/ pass input to command line - Command Injection?
   * [ ] Application takes and processes XML input on the backend - XXE?
+  * [ ] 403 errrors - Can we use HTTP verb tampering to bypass?
+    * [ ] If injections are being filtered, can we use HTTP verb tampering to try to bypass the filtering?&#x20;

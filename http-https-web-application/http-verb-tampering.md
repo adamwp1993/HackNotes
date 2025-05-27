@@ -16,6 +16,16 @@ HTTP verbs:
 8. PATCH - Apply partial modifications to the resource at specified location
 9. CONNECT - Establishes a tunnel to the server, typically used for SSL (HTTPS) connections through a proxy.
 
+If enabled, the Web Distributed Authoring and Version [(WebDAV)](http://www.webdav.org/specs/rfc2518.html) [extensions](https://tools.ietf.org/html/rfc4918) permit several more HTTP methods:
+
+* [`PROPFIND`](http://www.webdav.org/specs/rfc2518.html#METHOD_PROPFIND)
+* [`PROPPATCH`](http://www.webdav.org/specs/rfc2518.html#METHOD_PROPPATCH)
+* [`MKCOL`](http://www.webdav.org/specs/rfc2518.html#METHOD_MKCOL)
+* [`COPY`](http://www.webdav.org/specs/rfc2518.html#METHOD_COPY)
+* [`MOVE`](http://www.webdav.org/specs/rfc2518.html#METHOD_MOVE)
+* [`LOCK`](http://www.webdav.org/specs/rfc2518.html#METHOD_LOCK)
+* [`UNLOCK`](http://www.webdav.org/specs/rfc2518.html#METHOD_UNLOCK)
+
 #### Insecure server configuration
 
 Insecure web server configurations can introduce HTTP Verb Tampering vulnerabilities by limiting authentication to specific methods like `GET` and `POST`. This allows attackers to use other methods, such as `HEAD`, to bypass authentication and access restricted areas. Properly securing all HTTP methods is crucial to prevent these vulnerabilities.
@@ -54,7 +64,19 @@ Try using **different verbs** to access the file: `GET, HEAD, POST, PUT, DELETE,
 * Using a HTTP header like `X-HTTP-Method-Override: PUT` can overwrite the verb used.
 * Use **`TRACE`** verb and if you are very lucky maybe in the response you can see also the **headers added by intermediate proxies** that might be useful.
 
+If enabled, the Web Distributed Authoring and Version [(WebDAV)](http://www.webdav.org/specs/rfc2518.html) [extensions](https://tools.ietf.org/html/rfc4918) permit several more HTTP methods:
 
+* [`PROPFIND`](http://www.webdav.org/specs/rfc2518.html#METHOD_PROPFIND)
+* [`PROPPATCH`](http://www.webdav.org/specs/rfc2518.html#METHOD_PROPPATCH)
+* [`MKCOL`](http://www.webdav.org/specs/rfc2518.html#METHOD_MKCOL)
+* [`COPY`](http://www.webdav.org/specs/rfc2518.html#METHOD_COPY)
+* [`MOVE`](http://www.webdav.org/specs/rfc2518.html#METHOD_MOVE)
+* [`LOCK`](http://www.webdav.org/specs/rfc2518.html#METHOD_LOCK)
+* [`UNLOCK`](http://www.webdav.org/specs/rfc2518.html#METHOD_UNLOCK)
+
+### Bypassing Security Filters
+
+Security Filters may be in place to detect malicious requests to detect injection attempts on POST parameters. in some cases, the application may have been insecurely coded to only enforce these on expected HTTP verbs, but not others. Look for blocked requests when attempting injections, these will typically provide some type of error that the request was denied or malicious of some sort. **when attempting some sort of injection attack that is being filtered, we should also see if we can bypass the security filters by using different HTTP verbs.**
 
 
 
