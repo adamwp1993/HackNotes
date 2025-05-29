@@ -80,7 +80,85 @@ Security Filters may be in place to detect malicious requests to detect injectio
 
 
 
+### Prevention
 
+Verb tampering vulnerabilities are typically produced either by insecure server configuration or insecure coding (or both).&#x20;
+
+#### Insecure Server Configuration
+
+The following server configuration examples demonstrate an authentication bypass vulnerability via HTTP verb tampering. in these examples, the authentication for the admin directory is required, but only on get requests. making it possible to access these resources via other HTTP verbs, bypassing authentication requirements.&#x20;
+
+Apache:
+
+```xml
+<Directory "/var/www/html/admin">
+    AuthType Basic
+    AuthName "Admin Panel"
+    AuthUserFile /etc/apache2/.htpasswd
+    <Limit GET>
+        Require valid-user
+    </Limit>
+</Directory>
+```
+
+Tomcat:
+
+```xml
+<security-constraint>
+    <web-resource-collection>
+        <url-pattern>/admin/*</url-pattern>
+        <http-method>GET</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+        <role-name>admin</role-name>
+    </auth-constraint>
+</security-constraint>
+```
+
+ASP.net:
+
+```xml
+<system.web>
+    <authorization>
+        <allow verbs="GET" roles="admin">
+            <deny verbs="GET" users="*">
+        </deny>
+        </allow>
+    </authorization>
+</system.web>
+```
+
+In order to prevent these, we can specify a single allowed method using safe keywords such as:
+
+Apache: LimitExcept
+
+Tomcat: http-method-omission
+
+ASP.net: add/remove
+
+Also consider disabling or denying all head requests, unless specifically needed.&#x20;
+
+#### Insecure Coding
+
+In the following example, we see where our command injection filter is only applied by the web applications code on POST requests, making requests via other method bypass the filtering.
+
+```php
+if (isset($_REQUEST['filename'])) {
+    if (!preg_match('/[^A-Za-z0-9. _-]/', $_POST['filename'])) {
+        system("touch " . $_REQUEST['filename']);
+    } else {
+        echo "Malicious Request Denied!";
+    }
+}
+```
+
+In order to prevent this, we must be consistent with our use of HTTP methods and ensure all methods are utilizing the filtering.
+
+| Language | Function                        |
+| -------- | ------------------------------- |
+| PHP      | `$_REQUEST['param']`            |
+| Java     | `request.getParameter('param')` |
+| C#       | `Request['param']`              |
 
 ## Links and Resources
 
