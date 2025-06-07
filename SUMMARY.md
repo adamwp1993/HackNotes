@@ -22,14 +22,23 @@
 ## HTTP/HTTPs - Web Application
 
 * [WebApp Methodology](http-https-web-application/webapp-methodology.md)
+* [Recon](http-https-web-application/recon.md)
+* [Web Application Fuzzing](http-https-web-application/web-application-fuzzing.md)
+* [Password Spray/Brute Force](http-https-web-application/password-spray-brute-force.md)
 * [SQL Injection](http-https-web-application/sql-injection.md)
 * [Command Injection](http-https-web-application/command-injection.md)
-* [XSS](http-https-web-application/xss.md)
+* [XSS - Cross Site Scripting](http-https-web-application/xss-cross-site-scripting.md)
 * [File Upload](http-https-web-application/file-upload.md)
 * [HTTP Verb Tampering](http-https-web-application/http-verb-tampering.md)
 * [IDOR - Insecure Direct Object Reference](http-https-web-application/idor-insecure-direct-object-reference/README.md)
   * [Detecting and Enumerating IDOR](http-https-web-application/idor-insecure-direct-object-reference/detecting-and-enumerating-idor.md)
   * [Preventing IDOR](http-https-web-application/idor-insecure-direct-object-reference/preventing-idor.md)
+* [File Inclusion - LFI/RFI](http-https-web-application/file-inclusion-lfi-rfi.md)
+
+***
+
+* [XXE - XML External Entity Injection](xxe-xml-external-entity-injection/README.md)
+  * [Exploiting XXE](xxe-xml-external-entity-injection/exploiting-xxe.md)
 
 ## Windows & Active Directory
 
