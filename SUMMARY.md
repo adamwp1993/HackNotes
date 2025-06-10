@@ -31,7 +31,7 @@
 * [File Upload](http-https-web-application/file-upload.md)
 * [HTTP Verb Tampering](http-https-web-application/http-verb-tampering.md)
 * [IDOR - Insecure Direct Object Reference](http-https-web-application/idor-insecure-direct-object-reference/README.md)
-  * [Detecting and Enumerating IDOR](http-https-web-application/idor-insecure-direct-object-reference/detecting-and-enumerating-idor.md)
+  * [Exploiting IDOR](http-https-web-application/idor-insecure-direct-object-reference/exploiting-idor.md)
   * [Preventing IDOR](http-https-web-application/idor-insecure-direct-object-reference/preventing-idor.md)
 * [File Inclusion - LFI/RFI](http-https-web-application/file-inclusion-lfi-rfi.md)
 
