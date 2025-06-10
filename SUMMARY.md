@@ -39,6 +39,7 @@
 
 * [XXE - XML External Entity Injection](xxe-xml-external-entity-injection/README.md)
   * [Exploiting XXE](xxe-xml-external-entity-injection/exploiting-xxe.md)
+  * [XXE prevention](xxe-xml-external-entity-injection/xxe-prevention.md)
 
 ## Windows & Active Directory
 
