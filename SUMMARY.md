@@ -65,3 +65,7 @@
 ## Pivoting
 
 * [Page 9](pivoting/page-9.md)
+
+## Reporting
+
+* [Sample Pentest Note Structure](reporting/sample-pentest-note-structure.md)
