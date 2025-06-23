@@ -13,7 +13,7 @@
 
 ## Network Scanning / Vulnerability Assessment&#x20;
 
-* [Page 7](network-scanning-vulnerability-assessment/page-7.md)
+* [Application Discovery](network-scanning-vulnerability-assessment/application-discovery.md)
 
 ## Password Attacks
 
@@ -34,6 +34,7 @@
   * [Exploiting IDOR](http-https-web-application/idor-insecure-direct-object-reference/exploiting-idor.md)
   * [Preventing IDOR](http-https-web-application/idor-insecure-direct-object-reference/preventing-idor.md)
 * [File Inclusion - LFI/RFI](http-https-web-application/file-inclusion-lfi-rfi.md)
+* [Common Web Applications](http-https-web-application/common-web-applications.md)
 
 ***
 
