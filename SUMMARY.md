@@ -1,7 +1,8 @@
 # Table of contents
 
 * [Welcome](README.md)
-* [Resources](resources.md)
+* [Resources](resources/README.md)
+  * [Learning to hack](resources/learning-to-hack.md)
 
 ## Methodology
 
