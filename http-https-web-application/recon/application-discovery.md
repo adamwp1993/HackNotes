@@ -22,3 +22,15 @@ masscan <target1> <target2> <target3> -p 80,433,8000,8080,8180,8888,10000 --rate
 
 Massscan Cheatsheet: [https://cheatsheet.haax.fr/network/port-scanning/masscan\_cheatsheet/](https://cheatsheet.haax.fr/network/port-scanning/masscan_cheatsheet/)
 
+### Automated Screenshotting with EyeWitness and Aquatone
+
+Using nmaps XML output we can scan all the targets for live web applications, and take and save screenshots.&#x20;
+
+```
+eyewitness --web -x web_discovery.xml -d inlanefreight_eyewitness
+
+cat web_discovery.xml | ./aquatone -nmap
+
+```
+
+Its important to review the output of these tools and determine which of the applications are high value targets. Custom web applications may be home grown and many times may contain a wide array of vulnerabilties.&#x20;

@@ -31,4 +31,5 @@ description: Checkbook for enumerating web applications
   * [ ] User input is used to execute some utility/ pass input to command line - Command Injection?
   * [ ] Application takes and processes XML input on the backend - XXE?
   * [ ] 403 errrors - Can we use HTTP verb tampering to bypass?
-    * [ ] If injections are being filtered, can we use HTTP verb tampering to try to bypass the filtering?&#x20;
+    * [ ] If injections are being filtered, can we use HTTP verb tampering to try to bypass the filtering?
+  * [ ] Parameters with ID values, object references - IDOR?&#x20;

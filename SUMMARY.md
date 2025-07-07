@@ -14,8 +14,6 @@
 
 ## Network Scanning / Vulnerability Assessment&#x20;
 
-* [Application Discovery](network-scanning-vulnerability-assessment/application-discovery.md)
-
 ## Password Attacks
 
 * [Page 10](password-attacks/page-10.md)
@@ -23,7 +21,8 @@
 ## HTTP/HTTPs - Web Application
 
 * [WebApp Methodology](http-https-web-application/webapp-methodology.md)
-* [Recon](http-https-web-application/recon.md)
+* [Recon](http-https-web-application/recon/README.md)
+  * [Application Discovery](http-https-web-application/recon/application-discovery.md)
 * [Web Application Fuzzing](http-https-web-application/web-application-fuzzing.md)
 * [Password Spray/Brute Force](http-https-web-application/password-spray-brute-force.md)
 * [SQL Injection](http-https-web-application/sql-injection.md)
