@@ -3,6 +3,7 @@
 * [Welcome](README.md)
 * [Resources](resources/README.md)
   * [Learning to hack](resources/learning-to-hack.md)
+  * [Bug Bounty for Beginners](resources/bug-bounty-for-beginners.md)
 
 ## Methodology
 
