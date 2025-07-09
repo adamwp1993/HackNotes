@@ -10,6 +10,7 @@ description: Checkbook for enumerating web applications
     * [ ] Any known vulnerabilites / well known technologies?
     * [ ] What programming languages and web frameworks does the application use?
     * [ ] what makes up the back end? databases, CMS, etc.
+    * [ ] Is the web application running off of any well known technologies?
   * [ ] Analyze source code - Sensitive data disclosure? Front end input validation?
     * [ ] Robots.txt
   * [ ] Fuzzing Vhosts, Subdirectories, Subdomains, Crawling
@@ -24,6 +25,11 @@ description: Checkbook for enumerating web applications
     * [ ] Can you identify all places in the application that take user input?
     * [ ] Can you identify all URL parameters?
     * [ ] Can you identify all HTTP request parameters?
+  * [ ] Common Applications&#x20;
+    * [ ] Wordpress
+      * [ ] Plugins/Theme vulnerabilities? Check for versions of all plugins and themes and look for interesting vulnerabilities&#x20;
+      * [ ] Can you get an Administrator account? (this can lead to RCE)
+      * [ ] Can you get an editor/author account? (may disclose more vulnerable plugins)
   * [ ] Display user input on page - Possible XSS?
   * [ ] Request interacting with Database - SQL Injection?
   * [ ] Parameter is adjusting content on page from a file - LFI/RFI?

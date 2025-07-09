@@ -4,12 +4,14 @@ cover: https://gitbookio.github.io/onboarding-template-images/header.png
 coverY: 0
 ---
 
-# Welcome
+# Welcome - Start here!
 
-Welcome to the GitBook Starter Template! Here you'll get an overview of all the amazing features GitBook offers to help you build beautiful, interactive documentation.
+### Disclaimer:
 
-You'll see some of the best parts of GitBook in action — and find help on how you can turn this template into your own.
+The content in this blog is for educational and informational purposes only, and all techniques utilized here should only be used in a lab environment or a penetration testing/ red team engagement that has been approved and signed off by a client. The content in this blog should not be used for illegal or malicous activities, and the blog owner is not liable for any loss or damage. By using this blog, the user agrees to release the blog owner from any and all liability for damages, losses or harm that may result from the use of the information contained in this blog.&#x20;
 
-### Jump right in
 
-<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Getting Started</strong></td><td>Create your first site</td><td></td><td></td><td><a href="broken-reference">Broken link</a></td></tr><tr><td><strong>Basics</strong></td><td>Learn the basics of GitBook</td><td></td><td></td><td><a href="broken-reference">Broken link</a></td></tr><tr><td><strong>Publish your docs</strong></td><td>Share your docs online</td><td></td><td></td><td><a href="broken-reference">Broken link</a></td></tr></tbody></table>
+
+### Welcome to Adam's HackNotes!
+
+This blog was built for my own personal use in Studying for certifications, Playing CTF's, and one day use in PenTesting/ Red teaming engagements. Content from this blog may include content from other third-party sources. Please reference the resources page to look at sources that were used in the making of this blog.&#x20;

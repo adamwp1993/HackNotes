@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Welcome](README.md)
+* [Welcome - Start here!](README.md)
 * [Resources](resources/README.md)
   * [Learning to hack](resources/learning-to-hack.md)
   * [Bug Bounty for Beginners](resources/bug-bounty-for-beginners.md)
@@ -15,6 +15,8 @@
 
 ## Network Scanning / Vulnerability Assessment&#x20;
 
+* [Application Discovery](network-scanning-vulnerability-assessment/application-discovery.md)
+
 ## Password Attacks
 
 * [Page 10](password-attacks/page-10.md)
@@ -24,6 +26,7 @@
 * [WebApp Methodology](http-https-web-application/webapp-methodology.md)
 * [Recon](http-https-web-application/recon/README.md)
   * [Application Discovery](http-https-web-application/recon/application-discovery.md)
+  * [Footprinting](http-https-web-application/recon/footprinting.md)
 * [Web Application Fuzzing](http-https-web-application/web-application-fuzzing.md)
 * [Password Spray/Brute Force](http-https-web-application/password-spray-brute-force.md)
 * [SQL Injection](http-https-web-application/sql-injection.md)
@@ -35,13 +38,15 @@
   * [Exploiting IDOR](http-https-web-application/idor-insecure-direct-object-reference/exploiting-idor.md)
   * [Preventing IDOR](http-https-web-application/idor-insecure-direct-object-reference/preventing-idor.md)
 * [File Inclusion - LFI/RFI](http-https-web-application/file-inclusion-lfi-rfi.md)
-* [Common Web Applications](http-https-web-application/common-web-applications.md)
 
 ***
 
 * [XXE - XML External Entity Injection](xxe-xml-external-entity-injection/README.md)
   * [Exploiting XXE](xxe-xml-external-entity-injection/exploiting-xxe.md)
   * [XXE prevention](xxe-xml-external-entity-injection/xxe-prevention.md)
+* [Common Web Applications](common-web-applications/README.md)
+  * [CMS - Content Management System](common-web-applications/cms-content-management-system/README.md)
+    * [Wordpress](common-web-applications/cms-content-management-system/wordpress.md)
 
 ## Windows & Active Directory
 
