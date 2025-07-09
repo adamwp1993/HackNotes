@@ -29,6 +29,14 @@ Adam-162@htb[/htb]$ curl -s http://blog.inlanefreight.local | grep WordPress
 <meta name="generator" content="WordPress 5.8"  
 ```
 
+### WPScan
+
+WPScan can be used to automatically detect vulnerable plugins, themes, users, media, and backups. by retrieving a free plan API key, you can make up to 75 requests per day against the WPVulnDB to lookup vulnerabilities.&#x20;
+
+```shell-session
+Adam-162@htb[/htb]$ sudo wpscan --url http://blog.inlanefreight.local --enumerate --api-token dEOFB<SNIP>
+```
+
 ### Wordpress User Accounts&#x20;
 
 1. Administrator: This user has access to administrative features within the website. This includes adding and deleting users and posts, as well as editing source code.
