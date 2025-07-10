@@ -53,6 +53,10 @@ Default Wordpress login is found at /wp-login.
 
 Attempt a few login attempts and see if the error message indicates that a user is not registered on the site. If this is the case, we can enumerate for valid usernames.&#x20;
 
+### Login Brute Force&#x20;
+
+
+
 ### Plugins/Themes
 
 Wordpress stores its plugins in wp-content/plugins directory, and themes are stored in wp-content/themes. these should be investigated for vulnerable plugins and themes which can lead to RCE.
