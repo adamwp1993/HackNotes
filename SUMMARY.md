@@ -4,6 +4,7 @@
 * [Resources](resources/README.md)
   * [Learning to hack](resources/learning-to-hack.md)
   * [Bug Bounty for Beginners](resources/bug-bounty-for-beginners.md)
+  * [Tmux Cheatsheet](resources/tmux-cheatsheet.md)
 
 ## Methodology
 
@@ -44,9 +45,11 @@
 * [XXE - XML External Entity Injection](xxe-xml-external-entity-injection/README.md)
   * [Exploiting XXE](xxe-xml-external-entity-injection/exploiting-xxe.md)
   * [XXE prevention](xxe-xml-external-entity-injection/xxe-prevention.md)
+* [Web Shells](web-shells.md)
 * [Common Web Applications](common-web-applications/README.md)
   * [CMS - Content Management System](common-web-applications/cms-content-management-system/README.md)
     * [Wordpress](common-web-applications/cms-content-management-system/wordpress.md)
+    * [Joomla](common-web-applications/cms-content-management-system/joomla.md)
 
 ## Windows & Active Directory
 
@@ -75,3 +78,7 @@
 ## Reporting
 
 * [Sample Pentest Note Structure](reporting/sample-pentest-note-structure.md)
+
+## Pentesting / Red Teaming Tips&#x20;
+
+* [Tips](pentesting-red-teaming-tips/tips.md)
