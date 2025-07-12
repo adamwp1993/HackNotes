@@ -113,7 +113,7 @@ curl -s http://dev.inlanefreight.local/templates/protostar/error.php?cmd=id
 
 ### Leveraging known vulnerabilities&#x20;
 
-The majority Hdt&#x20;
+The majority of critical vulnerabilities are typically for extensions. Core Joomla critical vulnerabilities are rare. Make sure to enumerate Joomla version as well as all extensions and look for vulnerabilities.&#x20;
 
 
 
