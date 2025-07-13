@@ -4,7 +4,6 @@
 * [Resources](resources/README.md)
   * [Learning to hack](resources/learning-to-hack.md)
   * [Bug Bounty for Beginners](resources/bug-bounty-for-beginners.md)
-  * [Tmux Cheatsheet](resources/tmux-cheatsheet.md)
 
 ## Methodology
 
@@ -84,6 +83,7 @@
 
 * [Tips](pentesting-red-teaming-tips/tips.md)
 
-## Group 1
+## AttackBox tricks
 
-* [Python Versions and Virtual Environments](group-1/python-versions-and-virtual-environments.md)
+* [Python Versions and Virtual Environments](attackbox-tricks/python-versions-and-virtual-environments.md)
+* [Tmux Cheatsheet](attackbox-tricks/tmux-cheatsheet.md)
