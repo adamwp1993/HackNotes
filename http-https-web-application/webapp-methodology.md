@@ -25,8 +25,9 @@ description: Checkbook for enumerating web applications
     * [ ] Can you identify all places in the application that take user input?
     * [ ] Can you identify all URL parameters?
     * [ ] Can you identify all HTTP request parameters?
+      * [ ] Fuzz parameters
   * [ ] Common Applications&#x20;
-    * [ ] Wordpress
+    * [ ] CMS - joomla, drupal, wordpress
       * [ ] Plugins/Theme vulnerabilities? Check for versions of all plugins and themes and look for interesting vulnerabilities&#x20;
       * [ ] Can you get an Administrator account? (this can lead to RCE)
       * [ ] Can you get an editor/author account? (may disclose more vulnerable plugins)
