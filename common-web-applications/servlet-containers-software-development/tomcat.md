@@ -107,3 +107,58 @@ jsp stores JSP files which are executable files that execute backend code, simil
 The above web.xml does the following:&#x20;
 
 1. defines a new servlet named AdminServlet and maps that servlet to the Java class com.inlanefreight.api.AdminServlet.&#x20;
+2. Creates a servlet mapping, mapping requests to /admin with the AdminServlet. this means requests sent to /admin will be sent to the com.inlanefreight.api.AdminServlet class for processing.&#x20;
+
+tomcat-users.xml is used to allow or prevent access to the /manager and host-manager admin portals for tomcat, and can include credentials:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SNIP>
+  
+<tomcat-users xmlns="http://tomcat.apache.org/xml"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://tomcat.apache.org/xml tomcat-users.xsd"
+              version="1.0">
+<!--
+  By default, no user is included in the "manager-gui" role required
+  to operate the "/manager/html" web application.  If you wish to use this app,
+  you must define such a user - the username and password are arbitrary.
+
+  Built-in Tomcat manager roles:
+    - manager-gui    - allows access to the HTML GUI and the status pages
+    - manager-script - allows access to the HTTP API and the status pages
+    - manager-jmx    - allows access to the JMX proxy and the status pages
+    - manager-status - allows access to the status pages only
+
+  The users below are wrapped in a comment and are therefore ignored. If you
+  wish to configure one or more of these users for use with the manager web
+  application, do not forget to remove the <!.. ..> that surrounds them. You
+  will also need to set the passwords to something appropriate.
+-->
+
+   
+ <SNIP>
+  
+!-- user manager can access only manager section -->
+<role rolename="manager-gui" />
+<user username="tomcat" password="tomcat" roles="manager-gui" />
+
+<!-- user admin can access manager and admin section both -->
+<role rolename="admin-gui" />
+<user username="admin" password="admin" roles="manager-gui,admin-gui" />
+
+
+</tomcat-users>
+```
+
+### Enumeration
+
+Check for known vulnerabilities.&#x20;
+
+check for /manager and /host-manager pages.
+
+```shell-session
+gobuster dir -u http://web01.inlanefreight.local:8180/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt
+```
+
