@@ -89,3 +89,8 @@
 
 * [Python Versions and Virtual Environments](attackbox-tricks/python-versions-and-virtual-environments.md)
 * [Tmux Cheatsheet](attackbox-tricks/tmux-cheatsheet.md)
+* [Routing Metasploit traffic through BurpSuite for Debugging](attackbox-tricks/routing-metasploit-traffic-through-burpsuite-for-debugging.md)
+
+## Evasion
+
+* [Payload Obfuscation](evasion/payload-obfuscation.md)

