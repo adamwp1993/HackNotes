@@ -162,3 +162,5 @@ check for /manager and /host-manager pages.
 gobuster dir -u http://web01.inlanefreight.local:8180/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt
 ```
 
+### Login Brute Force
+
