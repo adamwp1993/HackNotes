@@ -54,7 +54,7 @@ Strengthen security by validating and sanitizing inputs consistently, regardless
 
 This Vulnerability can be used many times to bypass authentication to restricted resources. IF we identify a file or directory that we get a 403 or 401 error for, we can capture the request with Burp Suite and modify the request header to test the verbs, and look for a 200 response:
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### [HTTP Verbs/Methods Fuzzing](https://book.hacktricks.wiki/en/network-services-pentesting/pentesting-web/403-and-401-bypasses.html#http-verbsmethods-fuzzing) <a href="#http-verbsmethods-fuzzing" id="http-verbsmethods-fuzzing"></a>
 

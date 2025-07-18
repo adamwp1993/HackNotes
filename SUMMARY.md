@@ -52,6 +52,7 @@
     * [Drupal](common-web-applications/cms-content-management-system/drupal.md)
   * [Servlet Containers/Software Development](common-web-applications/servlet-containers-software-development/README.md)
     * [Tomcat](common-web-applications/servlet-containers-software-development/tomcat.md)
+    * [Jenkins](common-web-applications/servlet-containers-software-development/jenkins.md)
 
 ## Windows & Active Directory
 
@@ -90,6 +91,7 @@
 * [Python Versions and Virtual Environments](attackbox-tricks/python-versions-and-virtual-environments.md)
 * [Tmux Cheatsheet](attackbox-tricks/tmux-cheatsheet.md)
 * [Routing Metasploit traffic through BurpSuite for Debugging](attackbox-tricks/routing-metasploit-traffic-through-burpsuite-for-debugging.md)
+* [Full TTY shell](attackbox-tricks/full-tty-shell.md)
 
 ## Evasion
 
