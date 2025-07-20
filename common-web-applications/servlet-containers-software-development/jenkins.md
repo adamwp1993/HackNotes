@@ -10,7 +10,7 @@ Jenkins runs on port 8080 by default and uses 5000 to attach slave servers.&#x20
 
 Jenkins is easily discovered by its distinctive login page:&#x20;
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 Jenkins may be running with weak/default credentials.&#x20;
 

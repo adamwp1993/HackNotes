@@ -39,11 +39,11 @@ droopescan scan drupal -u http://drupal.inlanefreight.local
 
 In versions before version 8, a Drupal Admin can login and enable this module, which allows PHP code to be modified and executed.&#x20;
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 Once enabled, go to Content -> Add Content -> Basic Page&#x20;
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 Here you would input your malicious code to gain a webshell or reverse shell.&#x20;
 
@@ -56,7 +56,7 @@ Use an `MD5` hash representation can originate from any hashed command or string
 
 Ensure Text Format is set to PHP code:&#x20;
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Install PHP Filter Module (8 and newer)
 
@@ -160,7 +160,7 @@ curl http://drupal-dev.inlanefreight.local/mrb3n.php?fe8edbabc5c5c9b7b764504cd22
 1. Capture login in Burpsuite to get valid session cookie:
    1.
 
-       <figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+       <figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 2.
 
     ```shell-session

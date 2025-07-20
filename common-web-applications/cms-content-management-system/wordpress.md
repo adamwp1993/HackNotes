@@ -97,7 +97,7 @@ If you have managed to compromise an administrator account for the Wordpress ins
 
 Edit and save a secondary theme (as to not mess up the primary one the site is using) with our malicious code:
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can interact with it or execute the code by finding the edited theme page at /wp-content/themes/\<theme-name>.
 

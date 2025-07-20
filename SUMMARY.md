@@ -12,6 +12,7 @@
 ## Recon
 
 * [Page 2](recon/page-2.md)
+* [Generate Username lists from linkedIn](recon/generate-username-lists-from-linkedin.md)
 
 ## Network Scanning / Vulnerability Assessment&#x20;
 
@@ -20,6 +21,7 @@
 ## Password Attacks
 
 * [Page 10](password-attacks/page-10.md)
+* [Essential Wordlists](password-attacks/essential-wordlists.md)
 
 ## HTTP/HTTPs - Web Application
 
@@ -53,6 +55,12 @@
   * [Servlet Containers/Software Development](common-web-applications/servlet-containers-software-development/README.md)
     * [Tomcat](common-web-applications/servlet-containers-software-development/tomcat.md)
     * [Jenkins](common-web-applications/servlet-containers-software-development/jenkins.md)
+  * [Network Monitoring](common-web-applications/network-monitoring/README.md)
+    * [Splunk](common-web-applications/network-monitoring/splunk.md)
+    * [PRTG Network Monitor](common-web-applications/network-monitoring/prtg-network-monitor.md)
+  * [Ticket Systems & Configuration Management](common-web-applications/ticket-systems-and-configuration-management/README.md)
+    * [osTicket](common-web-applications/ticket-systems-and-configuration-management/osticket.md)
+    * [Gitlab](common-web-applications/ticket-systems-and-configuration-management/gitlab.md)
 
 ## Windows & Active Directory
 
