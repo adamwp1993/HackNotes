@@ -61,6 +61,8 @@
   * [Ticket Systems & Configuration Management](common-web-applications/ticket-systems-and-configuration-management/README.md)
     * [osTicket](common-web-applications/ticket-systems-and-configuration-management/osticket.md)
     * [Gitlab](common-web-applications/ticket-systems-and-configuration-management/gitlab.md)
+  * [Common Gateway Interface](common-web-applications/common-gateway-interface/README.md)
+    * [Tomcat CGI](common-web-applications/common-gateway-interface/tomcat-cgi.md)
 
 ## Windows & Active Directory
 
