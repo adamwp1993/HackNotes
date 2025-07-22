@@ -6,7 +6,7 @@ Many times if discovered via eyewitness it will be flagged as a High Value Targe
 
 By requesting an invalid page, many times the tomcat server will return the server and version:
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 it can also be determined through the server header in the HTTP response, or simply via nmap scan.&#x20;
 

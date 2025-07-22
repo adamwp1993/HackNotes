@@ -63,6 +63,7 @@
     * [Gitlab](common-web-applications/ticket-systems-and-configuration-management/gitlab.md)
   * [Common Gateway Interface](common-web-applications/common-gateway-interface/README.md)
     * [Tomcat CGI](common-web-applications/common-gateway-interface/tomcat-cgi.md)
+  * [Thick Client Applications](common-web-applications/thick-client-applications.md)
 
 ## Windows & Active Directory
 
