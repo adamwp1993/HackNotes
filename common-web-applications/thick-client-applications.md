@@ -1,2 +1,0 @@
-# Thick Client Applications
-
