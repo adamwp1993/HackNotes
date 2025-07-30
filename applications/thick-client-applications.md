@@ -58,6 +58,16 @@ Similar to web application attacks.
 
 ### Reverse Engineering Thick Client Apps Example
 
+#### Key Takeaways:
+
+When finding interesting executables, process monitor can identify interesting temp files which may hold more executables.&#x20;
+
+de4dot de-obfuscates .exe files so they can be investigated with source code.&#x20;
+
+dnspy allows us to look at the source code.&#x20;
+
+in some instances you may not need to go through all the steps below, and just plugging the exe into dnspy may get you what you need, or some combination of these steps below.&#x20;
+
 #### Get Temp .bat file&#x20;
 
 1. Identify an interesting .exe file
@@ -179,4 +189,28 @@ Similar to web application attacks.
 
 ### Exploiting Web Vulnerabilties in Thick-Client applications&#x20;
 
-when thick client apps use a three-teir instead of two-tier architecture, this can open up common web vulnerabilities created by the middlewear sitting between the client and the database.&#x20;
+when thick client apps use a three-tier instead of two-tier architecture, this can open up common web vulnerabilities created by the middlewear sitting between the client and the database.
+
+A walkthrough can be found here: [https://academy.hackthebox.com/module/113/section/2164](https://academy.hackthebox.com/module/113/section/2164)
+
+### Modifying JAR executable source code&#x20;
+
+1. drag and drop the .jar file onto jd-gui.exe and file -> save all sources
+2. Apply your code changes in the \*.jar.src folder that the previous step created.
+3. Compile your code changes
+   1. ```
+      javac -cp fatty-client-new.jar fatty-client-new.jar.src\htb\fatty\client\gui\ClientGuiTest.java
+      ```
+   2. fatty-client-new.jar is the old JAR file we decompiled with jd-gui, and the source from the .jar.src is the code we changed. we are compiling our new code using the old JAR's framework.&#x20;
+4. From there we extract our old JAR file into a new folder. create your folder, copy paste the file, extract here.&#x20;
+5. Copy paste the newly compiled class files from our .jar.src folder into the folder we just extracted the old jar into to overwrite the old classes with the new ones.&#x20;
+   1. `mv -Force fatty-client-new.jar.src\htb\fatty\client\gui*.class raw\htb\fatty\client\gui\`
+6. Build our new jar file with the updated class files
+   1. ```
+      jar -cmf META-INF\MANIFEST.MF new.jar .
+      ```
+7. Run your new JAR!
+
+### Source Code analysis&#x20;
+
+If we can get our hands on the JAR file, we can decompile and analyze the source code for vulnerabilities like SQL injections or other common web vulnerabilities. Looking at User, login, database functions and classes can be very helpful here.&#x20;
