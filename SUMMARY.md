@@ -109,7 +109,7 @@
 
 * [Payload Obfuscation](evasion/payload-obfuscation.md)
 
-## Applications
+## Misc Applications and Technologies&#x20;
 
-* [Thick Client Applications](applications/thick-client-applications.md)
-* [Page 1](applications/page-1.md)
+* [Thick Client Applications](misc-applications-and-technologies/thick-client-applications.md)
+* [LDAP](misc-applications-and-technologies/ldap.md)
